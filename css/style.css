@@ -1,0 +1,29 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: aquamarine;
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2rem;
+}
+
+h1 {
+    border: 2px solid yellow;
+    font-size: 140px;
+}
