@@ -5,13 +5,8 @@
 ///////////////////
 // Global Variables
 
-const global = {
-    suits = ['diamonds', 'hearts', 'clubs', 'spades'],
-    values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'],
-};
-
-
-console.log(suits[1])
+const suits = ['Diamonds', 'Hearts', 'Clubs', 'Spades'];
+const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
 
 /////////////
 // Functions
