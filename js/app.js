@@ -6,14 +6,18 @@
 // Global Variables
 
 const global = {
-    number: 5
+    suits = ['diamonds', 'hearts', 'clubs', 'spades'],
+    values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'],
 }
+
+
+console.log(suits[1])
 
 /////////////
 // Functions
 
 const func = {
-    giveMe: (num) => num
+    giveMe: (x) => x,
 }
 
 
@@ -28,5 +32,5 @@ const handle = {
 ////////////
 // App Logic
 
-console.log(func.giveMe(global.number))
+// console.log(func.giveMe(suits))
 
