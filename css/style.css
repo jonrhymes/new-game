@@ -16,14 +16,32 @@ body {
 }
 
 body {
-    background-color: aquamarine;
+    background-color:aquamarine;
     font-family: 'Jost', sans-serif;
     font-weight: 700;
     line-height: 1;
     padding: 2rem;
+    /* position: absolute; */
 }
 
 h1 {
     border: 2px solid yellow;
     font-size: 140px;
+    position: fixed;
+
+}
+
+/* .logo {
+    position: fixed;
+} */
+
+.opp-hand {
+    display: flex;
+    /* margin-top: -100px; */
+    justify-content: center;
+    /* position: relative; */
+}
+
+.card-back {
+    height: 150px;
 }

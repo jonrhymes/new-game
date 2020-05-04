@@ -13,6 +13,13 @@
 
 const suits = ['Diamonds', 'Hearts', 'Clubs', 'Spades'];
 const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
+const images = [
+    '/Users/debbo/Desktop/new_game/img/Final Cards/2s/2-CLUBS.png',
+    '/Users/debbo/Desktop/new_game/img/Final Cards/2s/2-DIAMONDS.png'
+];
+
+
+
 
 // Card class
 class Card {
@@ -24,6 +31,9 @@ class Card {
 }
 
 let card = new Card('2','Diamonds');
+
+/////////////
+// Functions
 
 // Deck class
 class Deck {
@@ -64,45 +74,54 @@ class Deck {
 
     deal () {
         let hand = [];
-        while(hand.length < 11) {
+        while(hand.length < 26) {
             hand.push(this.deck.shift());
+
         } 
         // ^ Takes 11 cards from the bottom of the deck
         return hand;
+
     }
 
-    clearDeck () {
-        this.deck = [];
-    }
+    
 }
 
 let deck = new Deck();
 deck.createDeck(suits, values);
 
 console.log(deck);
-console.log(deck.createDeck(suits, values))
+// console.log(deck.createDeck(suits, values))
 console.log(deck.shuffle());
 console.log(deck.deal());
-console.log(deck.clearDeck());
 
-/////////////
-// Functions
 
-const func = {
-    giveMe: (x) => x,
-}
 
 
 /////////////////
 // Event Handlers
 
-const handle = {
-    click: () => console.log("hello")
+// const handle = {
+//     click: () => console.log("hello"),
+//     addCard: () => {
+
+//     }
+// }
+
+// const addCard = () => {
+//     const $img = $('<img>');
+//     $img.attr('src', randomCard());
+//     $body.append($img)
+// };
+
+const imager = {
+    click: () => {
+        let $img = $('<img>');
+        $img.attr('src', )
+    }
 }
 
 
 ////////////
 // App Logic
 
-// console.log(func.giveMe(suits))
 
