@@ -6,19 +6,15 @@
 // Global Variables
 
 // ==========> 
-// "Building a deck of cards in Javascript"
-// by Adam Coder
-// https://www.youtube.com/watch?v=h3ehO5QMNu4 
+// Sources: 
+// 1. "Building a deck of cards in Javascript" by Adam Coder, https://www.youtube.com/watch?v=h3ehO5QMNu4 
+
+// 2. https://github.com/MisterTeeRoland/war
+
 // ===========>
 
 const suits = ['Diamonds', 'Hearts', 'Clubs', 'Spades'];
 const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
-const images = [
-    '/Users/debbo/Desktop/new_game/img/Final Cards/2s/2-CLUBS.png',
-    '/Users/debbo/Desktop/new_game/img/Final Cards/2s/2-DIAMONDS.png'
-];
-
-
 
 
 // Card class
@@ -78,7 +74,7 @@ class Deck {
             hand.push(this.deck.shift());
 
         } 
-        // ^ Takes 11 cards from the bottom of the deck
+        // ^ Takes 26 cards from the bottom of the deck
         return hand;
 
     }
@@ -113,12 +109,12 @@ console.log(deck.deal());
 //     $body.append($img)
 // };
 
-const imager = {
-    click: () => {
-        let $img = $('<img>');
-        $img.attr('src', )
-    }
-}
+// const imager = {
+//     click: () => {
+//         let $img = $('<img>');
+//         $img.attr('src', )
+//     }
+// }
 
 
 ////////////
