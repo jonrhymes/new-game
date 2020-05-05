@@ -43,6 +43,32 @@ h1 {
 	        animation: text-pop-up-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
+.play-btn-div {
+    display: flex;
+    justify-content: center;
+    padding-top: 25px;
+}
+
+.btn {
+    color: white;
+    background-color: darkorange;
+    border: none;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    letter-spacing: .2rem;
+    border-radius: 12px;
+}
+
+.btn:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.btn:active {
+
+    background-color: gold;
+}
+
 .card-table {
     /* background-color: cadetblue; */
     height: 500px;
@@ -51,7 +77,7 @@ h1 {
 .scoreboard {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 35px 50px;
     font-size: 25px;
 }
@@ -59,13 +85,18 @@ h1 {
 .decks {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
     padding-top: 30px;
 }
 
 .back-card {
     height: 300px;
 }
+
+.back-card {
+    cursor: pointer;
+}
+
 
 /* /* /* .playerDeck {
     height: 120px;

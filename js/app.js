@@ -9,7 +9,7 @@
 // Sources: 
 // 1. "Building a deck of cards in Javascript" by Adam Coder, https://www.youtube.com/watch?v=h3ehO5QMNu4 
 
-// 2. https://github.com/MisterTeeRoland/war
+// 2. Game model adapated from Tyler Roland's War, https://github.com/MisterTeeRoland/war
 
 // ===========>
 
