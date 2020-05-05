@@ -12,98 +12,153 @@
 ///////////////////
 // Global Variables
 
-// Declares empty strings and arrays
-let playerDeck = '';
-let compDeck = '';
-let playerCard = '';
-let compCard = '';
-let playerHand = [];
-let compHand = [];
+// ====> instantiate variables 
 
-const deck = [
-    {name: '2 of Clubs', img: 
-]
+const suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
+const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
 
+const images = ['img/0.png', 'img/1.png', 'img/2.png'];
+// const images = [];
+// console.log(images[0])
 
-// const suits = ['Diamonds', 'Hearts', 'Clubs', 'Spades'];
-// const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
+// =====> attach img to class
 
+images.forEach((element) => {
+    console.log(element)
+    element++;
+})
 
-// // Card class
-// class Card {
-//     constructor(suit, value) {
-//         this.suit = suit;
-//         this.value = value;
-//         this.name = value + ' of ' + suit;
+// // let i = 0;
 
-//     }
+// for(let i = 0; i < images.length; i++){
+//     // console.log(images[i])
+//     let val = images[i];
 // }
 
-// let card = new Card('2','Diamonds');
 
+// ====> create Card class
+class Card {
+    constructor(suit, value, name, element) {
+        this.suit = suit;
+        this.value = value;
+        this.name = value + ' of ' + suit;
+        this.image = `${images}`;
+    }
+}
 
-// /////////////
-// // Functions
+// let card = new Card('Diamonds', '2');
+// console.log(card);
+// let card2 = new Card('Diamonds', '3');
+// console.log(card2);
+// console.log(card.image)
 
-// // Deck class
-// class Deck {
-//     constructor() {
-//         this.deck = [];
-//     }
+// =====> create Deck class
 
-//     createDeck(suits, values) {
-//         for(let suit of suits) {
-//             for(let value of values) {
-//                 this.deck.push(new Card(suit, value));
-//             }
-//         }
-//         return this.deck;
-//     }
-//     shuffle() {
-//         let counter = this.deck.length, temp, i;
+class Deck {
+    constructor() {
+        this.deck = [];
+    }
 
-//         while(counter) {
-//             i = Math.floor(Math.random() * counter--); 
-//             temp = this.deck[counter];
-//             this.deck[counter] = this.deck[i];
-//             this.deck[i] = temp;
+    createDeck(suits, values) {
+        for(let suit of suits) {
+            for(let value of values) {
+                this.deck.push(new Card(suit, value));
+            }
+        }
+        return this.deck;
+    }
 
-// // ======> 
-// // Flip indices
+    // shuffle() {
+    //     let counter = this.deck.length, temp, i;
 
-// // let arr = [1, 2]; // arr equals [1, 2]
-// // let temp = arr[0]; // temp equals 1
-// // arr[0] = arr[1]; // sets arr[0] to 2. arr = [2, 2]
-// // arr[1] = temp; // sets arr[1] to 1. now arr = [2, 1]
+    //     while(counter) {
+    //         i = Math.floor(Math.random() * counter--); 
+    //         temp = this.deck[counter];
+    //         this.deck[counter] = this.deck[i];
+    //         this.deck[i] = temp;
 
-// // ======>
+// ======> 
+// Flip indices
 
-//         }
-//         return this.deck;
-//     }
+// let arr = [1, 2]; // arr equals [1, 2]
+// let temp = arr[0]; // temp equals 1
+// arr[0] = arr[1]; // sets arr[0] to 2. arr = [2, 2]
+// arr[1] = temp; // sets arr[1] to 1. now arr = [2, 1]
 
-//     deal () {
-//         let hand = [];
-//         while(hand.length < 26) {
-//             hand.push(this.deck.shift());
+// ======>
 
-//         } 
-//         // ^ Takes 26 cards from the bottom of the deck
-//         return hand;
+        // }
+        // return this.deck;
+    // }
+}
 
-//     }
-
-    
-// }
-
-// let deck = new Deck();
-// deck.createDeck(suits, values);
-
+let deck = new Deck();
 // console.log(deck);
-// // console.log(deck.createDeck(suits, values))
-// console.log(deck.shuffle());
-// console.log(deck.deal());
+deck.createDeck(suits,values);
 
+// console.log(deck.createDeck(suits, values));
+
+let shuffledDeck = deck.shuffle();
+
+console.log(shuffledDeck);
+// console.log(shuffledDeck.length)
+
+// =============> 
+// Split the deck and populate Player and Computer Hands
+
+playerHand = [];
+compHand = [];
+
+// console.log(playerHand.push(shuffledDeck[0]))
+// playerHand.push(shuffledDeck[2])
+// playerHand.push(shuffledDeck[4])
+// console.log(playerHand)
+
+const divide = (shuffledDeck) => {
+    for(let i = 0; i < shuffledDeck.length; i++){
+        if(i % 2 === 0){
+            playerHand.push(shuffledDeck[i]); 
+        } else {
+            compHand.push(shuffledDeck[i]); 
+        }
+        $('.playerCount').html('Player cards: ' + playerHand.length)
+        $('.computerCount').html('Opponent cards: ' + compHand.length)
+        $('.score').html('');
+        // console.log(shuffledDeck[i])
+    }
+}
+
+divide(shuffledDeck)
+
+console.log(playerHand)
+console.log(compHand)
+
+
+// =============> 
+// Take one card off the top of the pile
+
+playerCard = '';
+compCard = '';
+
+const draw = () => {
+    let playerCard = playerHand[0];
+    let compCard = compHand[0];
+
+    playerCard = playerHand.shift();
+    console.log(playerCard)
+}
+
+// draw(playerHand)
+console.log(playerCard)
+
+const checkWin = () => {
+    if(playerHand.length === 0) {
+        $('.score').html('Opponent wins!');
+        $('.playerDeck').html('');
+    } else if(compHand.length === 0) {
+        $('.score').html('Player wins!')
+    }
+}
 
 
 
