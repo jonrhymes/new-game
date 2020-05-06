@@ -1,14 +1,12 @@
 # new-game
-GA Project 1: Game
+<h1>GA Project 1: Game</h1>
+  <h2>Duo: A comparative card game</h2>
 
-A comparative card game. 
+<p>
+A deck of 52 cards is divvied up between player and computer. One card is compared against the other. If one value is greater, then both cards are added into the winner's deck. If the card values are equal, then both cards are removed from play. The player who takes all the cards wins!
 
-A deck of 52 cards is divvied up between player and computer. One card is compared against the other. If one value is greater, then both cards are added into the winner's deck.
+Technologies used: HTML, CSS, JavaScript, JQuery, Google Fonts, favicon, Animista.
 
-The game ends when the winner takes all the cards.
+A link to live site: https://jonrhymes.github.io/new-game/
 
-Technologies used: HTML, CSS, JavaScript, JQuery, Google Fonts, 
-
-A link to live site:
-
-Installation instructions: None.
+Installation instructions: None.</p>
