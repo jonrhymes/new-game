@@ -66,3 +66,16 @@ class Deck {
 let deck = new Deck();
 
 console.log(deck.createDeck(suits, values))
+
+
+
+createDeck(suits, values) {
+    let i = 0;
+    for(let suit of suits) {
+        for(let value of values) { 
+            this.deck.push(new Card(suit, value, i))
+            i++;
+        }
+    }
+    return this.deck;
+}
