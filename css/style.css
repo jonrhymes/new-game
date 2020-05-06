@@ -99,6 +99,14 @@ h1 {
     height: 300px;
 }
 
+.player-card {
+    display: inline-block;
+}
+
+.comp-card {
+    display: inline-block;
+}
+
 
 
 /* /* /* .playerDeck {

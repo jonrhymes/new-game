@@ -20,16 +20,16 @@ const suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
 
 const values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
-const images = ['img/0.png', 'img/1.png', 'img/2.png'];
+// const images = ['img/0.png', 'img/1.png', 'img/2.png'];
 // const images = [];
 // console.log(images[0])
 
 // =====> attach img to class
 
-images.forEach((element) => {
-    console.log(element)
-    element++;
-})
+// images.forEach((element) => {
+//     console.log(element)
+//     element++;
+// })
 
 // // let i = 0;
 
@@ -66,7 +66,7 @@ class Deck {
 
     createDeck(suits, values) {
         let i = 0; 
-        // declared i=0 to cycle through the suits first, then the values, but continue counting up the index of pngs. The way I structured the pngs was from Clubs, to Diamonds, Hearts, then Spades.
+        // Attaches images to Class. I declared i=0 to cycle through the suits first, then the values and also continue to count up the index of pngs so that it tracks with the way I structured the pngs: Clubs from 2 to Ace, then Diamonds, Hearts and Spades.
         for(let suit of suits) {
             for(let value of values) { 
                 // console.log(suit, value, i);
@@ -101,25 +101,22 @@ class Deck {
     }
 }
 
-const deck = new Deck();
+const deck = new Deck ();
 
 // ======> 
-// Make a new Deck
+// Make a new Deck, shuffle
 
 deck.createDeck(suits, values);
 
 // ======> 
-// Shuffle new deck
+// Shuffle new deck, reassign a variable
 
 const shuffledDeck = deck.shuffle();
-console.log(shuffledDeck);
-
-
+// console.log(shuffledDeck);
 // console.log(shuffledDeck.length)
 
-
-// =============> 
-// Split the deck and populate Player and Computer Hands
+// ======> 
+// Set empty arrays
 
 playerHand = [];
 compHand = [];
@@ -128,6 +125,9 @@ compHand = [];
 // playerHand.push(shuffledDeck[2])
 // playerHand.push(shuffledDeck[4])
 // console.log(playerHand)
+
+// ======> 
+// Created a function to divide deck and deal Player and Computer hands
 
 const divide = (shuffledDeck) => {
     for(let i = 0; i < shuffledDeck.length; i++){
@@ -143,63 +143,184 @@ const divide = (shuffledDeck) => {
     }
 }
 
-divide(shuffledDeck)
+// ======> 
+// Invoked divide function to split deck evenly
 
-console.log(playerHand)
-console.log(compHand)
+divide(shuffledDeck);
 
-// =============> 
+console.log(playerHand);
+console.log(compHand);
+
+// ======> 
 // Announce winner
 
 const checkWin = () => {
     if(playerHand.length === 0) {
-        $('.score').html('Opponent wins!');
+        $('.score').html('Opponent beat Player! GAME OVER');
         $('.playerDeck').html('');
     } else if(compHand.length === 0) {
-        $('.score').html('Player wins!')
+        $('.score').html('Player beat Opponent! GAME OVER')
     }
 }
 
-// =============>
-// Update cards
+// ======> 
+// Update card lengths to keep track of who is winning
 
 const updateCount = () => {
 	$('.playerCount').html("Player cards: " + playerHand.length);
 	$('.computerCount').html("Opponent cards: " + compHand.length);
 }
 
+// ======> 
+// Take one card off the top of the pile, compare it, then put it in the winner's deck
 
-// =============> 
-// Take one card off the top of the pile, compare it, then put it in a deck
-
-// console.log(playerHand[0].value)
-// console.log(compHand[0].value)
-
-// console.log(playerHand[0])
-// console.log(playerHand.shift())
-// console.log(compHand.push(playerHand[0]))
-// console.log(compHand)
-// playerHand.shift()
-// console.log(playerHand)
+const compCard = compHand[0];
+// console.log(compCard);
+// console.log(compCard.value);
+const playerCard = playerHand[0];
+// console.log(playerCard);
+// console.log(playerCard.value);
 
 const play = () => {
-    if(playerHand[0].value < compHand[0].value){
-        $('.score').html('Opponent wins!');
-        compHand.push(playerHand[0]);
-        playerHand.shift();
-    }else if(playerHand[0].value > compHand[0].value){
-        $('.score').html('Player wins!');
-        playerHand.push(compHand[0]);
+    // ======> 
+    // sets the current card to be evaluated as the top card in each hand
+    let compCard = compHand[0];
+    console.log(compCard);
+    console.log(compCard.value);
+    let playerCard = playerHand[0];
+    console.log(playerCard);
+    console.log(playerCard.value);
+
+    // ======> 
+    // compares the values of the respective current card   
+    if(playerCard.value > compCard.value){
+
+        // ======> 
+        // takes the current card and pushes it to the back of the deck
+        playerHand.push(compCard, playerCard);
+
+        // ======> 
+        // removes top card from computer hand so that the next card resets compHand[0]
         compHand.shift();
-    }else{
-        $('.score').html('It\'s a tie!');
+
+        // ======> 
+        // removes top card from player hand
+        playerHand.shift();
+
+        console.log('player wins');
+
+        // ======> 
+        // removes top card from player hand
+        $('.score').html('Player wins!');
+        console.log(playerHand)
+
+    }else if(compCard.value > playerCard.value){
+        compHand.push(playerCard, compCard);
+        playerHand.shift();
+        compHand.shift();
+        $('.score').html('Opponent wins!');
+        console.log('comp wins');
+        console.log(compHand);
+    }else{ 
+        playerHand.push(playerCard);
+        playerHand.shift();
+        compHand.push(compCard);
+        compHand.shift();
+        $('.score').html(`It's a tie!`);
+        console.log('tie')
     }
     checkWin();
     updateCount();
 }
 
-console.log(playerHand)
-console.log(compHand)
+/////////////////
+// Event Handlers
+
+const $button = $('.btn');
+const $playerDeck = $('.playerDeck')
+const $compDeck = $('.compDeck')
+const $playerCard = $('.player-card')
+const $compCard = $('.comp-card')
+
+// const $img1 = $('<img>')
+
+$button.on('click', () => {
+    $playerCard.append($('<img class="front-card">').attr('src',`${playerHand[0].image}`));
+    $compCard.append($('<img class="front-card">').attr('src',`${compHand[0].image}`));
+    play();
+
+})
+
+// $playerCard.hide('slow').delay('2000');
+// $compCard.hide('slow').delay('2000');
+
+
+
+
+
+
+
+
+// console.log(playerHand)
+// console.log(compHand)
+
+
+// console.log(compHand[0])
+// console.log(compHand[0].value)
+
+// const draw = () => {
+//     let compCard = compHand[0];
+//     let playerCard = playerHand[0];
+// }
+
+// const play = (player, computer) => {
+//     let playerCard = playerHand[0];
+//     let compCard = compHand[0];
+   
+//     if(playerHand[0].value > compHand[0].value){
+//         console.log('playercard ' + playerCard.playerHand)
+//         console.log(playerCard.value)
+//         console.log('compcard' + compCard)
+//         console.log(compCard.value)
+//         // if player value is greater, take the card out of comp hand
+//         compHand.shift();
+//         // and push the card to player's hand
+//         playerHand.push(compCard);
+//         console.log(compCard);
+//         console.log(playerHand);
+
+
+
+    // }else if(playerHand[0].value < compHand[0].value){
+    //     console.log(compHand[0])
+    //     console.log(compHand[0].value)
+    //     compHand.shift();
+    //     playerHand.push(compHand[0]);
+    //     console.log(compHand)
+
+
+
+//     }
+// }
+
+// const play = () => {
+//     if(playerHand[0].value < compHand[0].value){
+//         $('.score').html('Opponent wins!');
+//         compHand.push(playerHand[0]);
+//         playerHand.shift();
+//     }else if(playerHand[0].value > compHand[0].value){
+//         $('.score').html('Player wins!');
+//         playerHand.push(compHand[0]);
+//         compHand.shift();
+//     }else{
+//         $('.score').html('It\'s a tie!');
+//     }
+//     checkWin();
+//     updateCount();
+// }
+
+// console.log(playerHand)
+// console.log(compHand)
 
 // play();
 
@@ -274,22 +395,20 @@ console.log(compHand)
 /////////////////
 // Event Handlers
 
+// const $button = $('.btn');
+// const $playerDeck = $('.playerDeck')
+// const $compDeck = $('.compDeck')
+// const $playerCard = $('.player-card')
+// const $compCard = $('.comp-card')
+
+// // const $img1 = $('<img>')
+
+// $button.on('click', () => {
+//     play();
+//     $playerCard.append($('<img class="front-card">').attr('src',`${playerHand[0].image}`));
+//     $compCard.append($('<img class="front-card">').attr('src',`${compHand[0].image}`));
+// })
 
 
 ////////////
 // App Logic
-
-const $button = $('.btn');
-const $playerDeck = $('.playerDeck')
-const $compDeck = $('.compDeck')
-// const $img1 = $('<img>')
-
-$button.on('click', () => {
-    play(playerHand);
-    // $playerDeck.append($('<img class="front-card">').attr('src','img/0.png'))
-})
-
-// $button.on('click', () => {
-//     $compDeck.prepend($('<img class="front-card">').attr('src','img/31.png'))
-// })
-
