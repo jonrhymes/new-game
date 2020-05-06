@@ -182,6 +182,8 @@ const playerCard = playerHand[0];
 // console.log(playerCard.value);
 
 const play = () => {
+    // ======>
+    // empty both divs or make a 
     // ======> 
     // sets the current card to be evaluated as the top card in each hand
     let compCard = compHand[0];
@@ -197,7 +199,8 @@ const play = () => {
 
         // ======> 
         // takes the current card and pushes it to the back of the deck
-        playerHand.push(compCard, playerCard);
+        playerHand.push(compCard);
+        playerHand.push(playerCard);
 
         // ======> 
         // removes top card from computer hand so that the next card resets compHand[0]
@@ -210,21 +213,44 @@ const play = () => {
         console.log('player wins');
 
         // ======> 
-        // removes top card from player hand
+        // resets score
         $('.score').html('Player wins!');
         console.log(playerHand)
+        console.log(compHand)
+    
+    // ======> 
+    // compares the values of the respective current card   
 
     }else if(compCard.value > playerCard.value){
-        compHand.push(playerCard, compCard);
+    
+        // ======> 
+        // takes the current card and pushes it to the back of the deck
+        compHand.push(playerCard);
+        compHand.push(compCard);
+
+        // ======> 
+        // removes top card from player hand so that the next card resets playerHand[0]
         playerHand.shift();
+
+        // ======> 
+        // removes top card from player hand
         compHand.shift();
+
+        // ======> 
+        // resets score
         $('.score').html('Opponent wins!');
         console.log('comp wins');
         console.log(compHand);
-    }else{ 
+        console.log(playerHand)
+
+    }else{
+        // ======>
+        // if there's a tie
+
         playerHand.push(playerCard);
-        playerHand.shift();
         compHand.push(compCard);
+
+        playerHand.shift();
         compHand.shift();
         $('.score').html(`It's a tie!`);
         console.log('tie')
@@ -244,12 +270,39 @@ const $compCard = $('.comp-card')
 
 // const $img1 = $('<img>')
 
-$button.on('click', () => {
-    $playerCard.append($('<img class="front-card">').attr('src',`${playerHand[0].image}`));
-    $compCard.append($('<img class="front-card">').attr('src',`${compHand[0].image}`));
-    play();
 
+// const emptyDivs = () => {
+//     $('.player-card').setTimeout($playerCard.empty(), 1000);
+//     $('.comp-card').setTimeout($compCard.empty(), 1000);
+// }
+
+
+$button.on('click', () => {
+    $playerCard.html($('<img class="front-card">').attr('src',`${playerHand[0].image}`));
+    $compCard.html($('<img class="front-card">').attr('src',`${compHand[0].image}`));
+    play();
+    // $playerCard.show();
+    // $compCard.show();
+    // setTimeout(() => {
+    //     $playerCard.empty();
+    //     $compCard.empty();
+    // }, 5000);
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// $button.on('click', emptyDivs());
 
 // $playerCard.hide('slow').delay('2000');
 // $compCard.hide('slow').delay('2000');
