@@ -15,7 +15,10 @@
 // ====> instantiate variables 
 
 const suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
-const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
+// const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
+
+
+const values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
 const images = ['img/0.png', 'img/1.png', 'img/2.png'];
 // const images = [];
@@ -38,15 +41,17 @@ images.forEach((element) => {
 
 // ====> create Card class
 class Card {
-    constructor(suit, value, name, element) {
+    constructor(suit, value, index, name) {
         this.suit = suit;
         this.value = value;
         this.name = value + ' of ' + suit;
-        this.image = `${images}`;
+        this.image = `img/` + index + `.png`;
+
     }
 }
 
-// let card = new Card('Diamonds', '2');
+let card = new Card('Clubs', '2', scr="img/0.png");
+
 // console.log(card);
 // let card2 = new Card('Diamonds', '3');
 // console.log(card2);
@@ -60,22 +65,28 @@ class Deck {
     }
 
     createDeck(suits, values) {
+        let i = 0; 
+        // declared i=0 to cycle through the suits first, then the values, but continue counting up the index of pngs. The way I structured the pngs was from Clubs, to Diamonds, Hearts, then Spades.
         for(let suit of suits) {
-            for(let value of values) {
-                this.deck.push(new Card(suit, value));
+            for(let value of values) { 
+                // console.log(suit, value, i);
+                this.deck.push(new Card(suit, value, i))
+                i++;
             }
         }
         return this.deck;
     }
 
-    // shuffle() {
-    //     let counter = this.deck.length, temp, i;
+    shuffle() {
+        let counter = this.deck.length, temp, i;
 
-    //     while(counter) {
-    //         i = Math.floor(Math.random() * counter--); 
-    //         temp = this.deck[counter];
-    //         this.deck[counter] = this.deck[i];
-    //         this.deck[i] = temp;
+        while(counter) {
+            i = Math.floor(Math.random() * counter--); 
+            temp = this.deck[counter];
+            this.deck[counter] = this.deck[i];
+            this.deck[i] = temp;
+        }
+        return this.deck;
 
 // ======> 
 // Flip indices
@@ -87,21 +98,25 @@ class Deck {
 
 // ======>
 
-        // }
-        // return this.deck;
-    // }
+    }
 }
 
-let deck = new Deck();
-// console.log(deck);
-deck.createDeck(suits,values);
+const deck = new Deck();
 
-// console.log(deck.createDeck(suits, values));
+// ======> 
+// Make a new Deck
 
-let shuffledDeck = deck.shuffle();
+deck.createDeck(suits, values);
 
+// ======> 
+// Shuffle new deck
+
+const shuffledDeck = deck.shuffle();
 console.log(shuffledDeck);
+
+
 // console.log(shuffledDeck.length)
+
 
 // =============> 
 // Split the deck and populate Player and Computer Hands
@@ -133,23 +148,8 @@ divide(shuffledDeck)
 console.log(playerHand)
 console.log(compHand)
 
-
 // =============> 
-// Take one card off the top of the pile
-
-playerCard = '';
-compCard = '';
-
-const draw = () => {
-    let playerCard = playerHand[0];
-    let compCard = compHand[0];
-
-    playerCard = playerHand.shift();
-    console.log(playerCard)
-}
-
-// draw(playerHand)
-console.log(playerCard)
+// Announce winner
 
 const checkWin = () => {
     if(playerHand.length === 0) {
@@ -159,6 +159,115 @@ const checkWin = () => {
         $('.score').html('Player wins!')
     }
 }
+
+// =============>
+// Update cards
+
+const updateCount = () => {
+	$('.playerCount').html("Player cards: " + playerHand.length);
+	$('.computerCount').html("Opponent cards: " + compHand.length);
+}
+
+
+// =============> 
+// Take one card off the top of the pile, compare it, then put it in a deck
+
+// console.log(playerHand[0].value)
+// console.log(compHand[0].value)
+
+// console.log(playerHand[0])
+// console.log(playerHand.shift())
+// console.log(compHand.push(playerHand[0]))
+// console.log(compHand)
+// playerHand.shift()
+// console.log(playerHand)
+
+const play = () => {
+    if(playerHand[0].value < compHand[0].value){
+        $('.score').html('Opponent wins!');
+        compHand.push(playerHand[0]);
+        playerHand.shift();
+    }else if(playerHand[0].value > compHand[0].value){
+        $('.score').html('Player wins!');
+        playerHand.push(compHand[0]);
+        compHand.shift();
+    }else{
+        $('.score').html('It\'s a tie!');
+    }
+    checkWin();
+    updateCount();
+}
+
+console.log(playerHand)
+console.log(compHand)
+
+// play();
+
+
+
+
+// let playerCard = playerHand.shift();
+// console.log(playerCard.value + 'player')
+// let compCard = compHand.shift();
+// console.log(compCard.value + 'computer')
+
+// const compare = () => {
+//     playerCard = playerHand.shift();
+//     console.log(playerCard);
+//     console.log(playerCard.value + 'player');
+//     compCard = compHand.shift();
+//     console.log(compCard);
+//     console.log(compCard.value + 'comp');
+// }
+
+
+// const play = (value) => {
+//     let playerCard = playerHand.shift();
+//     console.log(playerHand.value, compHand.value)
+//     let compCard = compHand.shift();
+//     if(playerCard.value === compCard.value){
+//         console.log('tie');
+//         $('.score').html(`It's a tie!`);
+//         // playerHand.push(playerCard);
+//         // compHand.push(compCard);
+//     }else if(playerCard.value > compCard.value){
+//         console.log('player wins');
+//     }
+    // if(playerCard.value > compCard.value){
+    //     $('.score').html('Player wins!');
+    //     console.log('player wins')
+    //     playerHand.push(playerCard);
+    //     playerHand.push(compCard);
+    //     console.log(playerHand);
+    //     console.log(compHand);
+    // }else if(playerCard.value < compCard.value){
+    //     $('.score').html('Opponent wins!');
+    //     console.log('comp wins!');
+    //     compHand.push(playerCard);
+    //     compHand.push(compCard);
+    //     console.log(playerHand);
+    //     console.log(compHand);
+    // }else{
+    // $('.score').html('It\'s a tie!');
+    // console.log('tie!')
+    // playerHand.push(playerCard);
+    // compHand.push(compCard);
+    // console.log(playerHand);
+    // console.log(compHand);
+    // }
+//     checkWin();
+//     updateCount();
+// }
+
+// play();
+
+// console.log(playerHand)
+// console.log(compHand)
+
+// console.log(play(playerHand))
+// console.log(play(playerHand))
+
+
 
 
 
@@ -176,10 +285,11 @@ const $compDeck = $('.compDeck')
 // const $img1 = $('<img>')
 
 $button.on('click', () => {
-    $playerDeck.append($('<img class="front-card">').attr('src','img/0.png'))
+    play(playerHand);
+    // $playerDeck.append($('<img class="front-card">').attr('src','img/0.png'))
 })
 
-$button.on('click', () => {
-    $compDeck.prepend($('<img class="front-card">').attr('src','img/31.png'))
-})
+// $button.on('click', () => {
+//     $compDeck.prepend($('<img class="front-card">').attr('src','img/31.png'))
+// })
 
