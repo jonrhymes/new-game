@@ -7,11 +7,20 @@
 
 <!-- Libraries -->
 
-    <link href="https://fonts.googleapis.com/css?family=Jost&display=swap" rel="stylesheet">
-    <script
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Jost&display=swap" rel="stylesheet">
+
+  <!-- JQuery -->
+  <script
   src="https://code.jquery.com/jquery-3.5.0.js"
   integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
   crossorigin="anonymous" defer></script>
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="img/favicon_io/site.webmanifest">
 
 <!-- Libraries End -->
 
@@ -61,7 +70,7 @@
 
       <div class="playerDeck">
 
-        <img class="back-card" src="img/Card-back.png">
+        <img class="back-card" src="img/Card-back.png" alt="Card Back featuring Bikini Kill's album The Singles">
           
         <!-- hidden player-card div -->
         <div class="player-card"></div>
@@ -74,7 +83,7 @@
        <!-- hidden player-card div -->
         <div class="comp-card"></div>
 
-        <img class="back-card" src="img/Card-back.png">
+        <img class="back-card" src="img/Card-back.png" alt="Card Back featuring Bikini Kill's album The Singles">
       
       </div>
     </div>
@@ -85,6 +94,11 @@
   </div>
 
 <!-- card table End -->
+  <div class="restart-div">
 
+    <!-- function to reload page and restart game -->
+    <button class="restart" onclick="location.reload()"><h2>RESTART</h2></button>
+
+  </div>
 </body>
 </html>
