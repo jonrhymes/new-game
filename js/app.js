@@ -246,7 +246,7 @@ const play = () => {
         console.log(playerHand);
         compHand.shift();
         console.log(compHand);
-        $('.score').html(`It's a tie! Both cards are removed the deck`);
+        $('.score').html(`It's a tie! Both cards are removed from the deck`);
         console.log('tie')
     }
 
