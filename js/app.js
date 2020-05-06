@@ -246,26 +246,38 @@ const play = () => {
         console.log(playerHand);
         compHand.shift();
         console.log(compHand);
-        $('.score').html(`It's a tie!`);
+        $('.score').html(`It's a tie! Both cards are removed from each deck`);
         console.log('tie')
     }
 
     // ======>    
-    // Invoke win check and card count
+    // Invoke win check and update card count
 
     checkWin();
     updateCount();
-}
+};
+
 
 /////////////////
 // Event Handlers
  
+// ======>    
+// Play button listeners
+
 const $button = $('.btn');
 const $playerCard = $('.player-card');
 const $compCard = $('.comp-card');
 
 $button.on('click', () => {
+
+    // ======>    
+    // Grab the topmost card image
+
     $playerCard.html($('<img class="front-card">').attr('src',`${playerHand[0].image}`));
     $compCard.html($('<img class="front-card">').attr('src',`${compHand[0].image}`));
+
+    // ======>    
+    // Initialize play function
+    
     play();
 });

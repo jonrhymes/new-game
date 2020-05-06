@@ -4,7 +4,6 @@
     margin: 0;
     padding: 0;
     box-sizing: inherit;
-
 }
 
 html {
@@ -15,6 +14,9 @@ html {
 
 body {
     box-sizing: border-box;
+
+    /* Preload images for faster display */
+    content: url(/img/0.png) url(/img/1.png) url(/img/2.png) url(/img/3.png) url(/img/4.png) url(/img/5.png) url(/img/6.png) url(/img/7.png) url(/img/8.png) url(/img/9.png) url(/img/10.png) url(/img/11.png) url(/img/12.png) url(/img/13.png) url(/img/14.png) url(/img/15.png) url(/img/16.png) url(/img/17.png) url(/img/18.png) url(/img/19.png) url(/img/20.png) url(/img/21.png) url(/img/22.png) url(/img/23.png) url(/img/24.png) url(/img/25.png) url(/img/26.png) url(/img/27.png) url(/img/28.png) url(/img/29.png) url(/img/30.png) url(/img/31.png) url(/img/32.png) url(/img/33.png) url(/img/34.png) url(/img/35.png) url(/img/36.png) url(/img/37.png) url(/img/38.png) url(/img/39.png) url(/img/40.png) url(/img/41.png) url(/img/42.png) url(/img/43.png) url(/img/44.png) url(/img/45.png) url(/img/46.png) url(/img/47.png) url(/img/48.png) url(/img/49.png) url(/img/50.png) url(/img/51.png) url(/img/Card-back.png)
 }
 
 body {
@@ -42,6 +44,27 @@ h1 {
 	-webkit-animation: text-pop-up-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	        animation: text-pop-up-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
+
+#modal {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    overflow: auto;
+    display: none;
+}
+
+/* #modal-textbox {
+    background-color: palegoldenrod;
+    height: 400px;
+    width: 400px;
+    border-radius: 10px;
+    margin: 150px auto;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.4)
+} */
 
 .play-btn-div {
     display: flex;
