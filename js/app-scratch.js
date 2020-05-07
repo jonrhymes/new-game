@@ -20,23 +20,23 @@ let playerHand = [];
 let compHand = [];
 // console.log(card)
 
-class Deck {
+class Deck extends Card {
     constructor() {
         this.deck = [];
+        }
     }
-
-    createDeck(suits, values) {
+    createDeck(suits, values)
         for(let suit of suits) {
             let i = 0;
             for(let value of values) {
                 
-                this.deck.push(new Card(suit, value, i))
+                this.deck.push(new Card (suit, value, i))
                 i++;
             }
         }
         return this.deck;
     }
-    shuffle() {
+    shuffle()
         let counter = this.deck.length, temp, i;
 
         while(counter) {
@@ -46,9 +46,8 @@ class Deck {
             this.deck[i] = temp;
         }
         return this.deck;
-    }
 
-    divide() {
+    divide() 
         for(let i = 0; i < this.deck.length; i++){
             if(i % 2 === 0){
                 playerHand.push(deck.shuffle([i])); 
